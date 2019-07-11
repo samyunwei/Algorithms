@@ -1,0 +1,10 @@
+.DS_Store
+/builds
+/pkg
+Makefile
+*.pro.user
+*.o
+*.dylib
+/data
+/test
+bin
