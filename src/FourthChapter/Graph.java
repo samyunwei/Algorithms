@@ -35,6 +35,13 @@ public class Graph {
         }
     }
 
+    Graph Copy() {
+        Graph copy_item = new Graph(this.V);
+        copy_item.E = this.E;
+        System.arraycopy(this.adj, 0, copy_item.adj, 0, this.E);
+        return copy_item;
+    }
+
     public int V() {
         return V;
     }
@@ -52,6 +59,16 @@ public class Graph {
     public Iterable<Integer> adj(int v) {
         return adj[v];
     }
+
+    Boolean hasEdge(int v, int w) {
+        for (Integer i : adj[v]) {
+            if (i == w) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {

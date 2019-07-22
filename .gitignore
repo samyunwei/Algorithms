@@ -8,3 +8,4 @@ Makefile
 /data
 /test
 bin
+/.idea/dataSources.xml
