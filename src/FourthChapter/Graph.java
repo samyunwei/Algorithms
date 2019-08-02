@@ -4,7 +4,6 @@ package FourthChapter;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 
-import java.util.Arrays;
 
 /**
  * Author:Sam
@@ -54,6 +53,19 @@ public class Graph {
         adj[v].add(w);
         adj[w].add(v);
         E++;
+    }
+
+    public void addEdgeNoLoop(int v, int w) {
+        if (v == w) {
+            return;
+        }
+        for (Integer node : adj[w]
+        ) {
+            if (node == v) {
+                return;
+            }
+        }
+        addEdge(v, w);
     }
 
     public Iterable<Integer> adj(int v) {
