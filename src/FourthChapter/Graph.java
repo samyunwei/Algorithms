@@ -4,6 +4,9 @@ package FourthChapter;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Author:Sam
@@ -33,6 +36,29 @@ public class Graph {
             addEdge(v, w);
         }
     }
+
+    public Graph(String stream, String sp) {
+        In in = new In(stream);
+        this.V = in.readInt();
+        this.E = in.readInt();
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int i = 0; i < V; i++) {
+            adj[i] = new Bag<Integer>();
+        }
+
+        while (in.hasNextLine()) {
+            String line = in.readLine();
+            if (line.isEmpty()) {
+                continue;
+            }
+            String[] a = line.split(sp);
+            int v = Integer.parseInt(a[0]);
+            for (int i = 1; i < a.length; i++) {
+                addEdge(v, Integer.parseInt(a[i]));
+            }
+        }
+    }
+
 
     Graph Copy() {
         Graph copy_item = new Graph(this.V);
@@ -94,4 +120,25 @@ public class Graph {
         }
         return s;
     }
+
+
+    public String Print() {
+        Map<String, Boolean> marked = new HashMap<String, Boolean>();
+        StringBuilder s = new StringBuilder(V + " vertices, " + E + " edges\n");
+        for (Integer v = 0; v < V; v++) {
+            s.append(v).append(": ");
+            for (Integer w : this.adj(v)) {
+                if (marked.containsKey(w.toString() + v.toString()) || marked.containsKey(v.toString() + w.toString())) {
+                    s.append("*").append(w).append("*").append(" ");
+                } else {
+                    s.append(w).append(" ");
+                    marked.put(w.toString() + v.toString(), true);
+                    marked.put(v.toString() + w.toString(), true);
+                }
+            }
+            s.append("\n");
+        }
+        return s.toString();
+    }
+
 }

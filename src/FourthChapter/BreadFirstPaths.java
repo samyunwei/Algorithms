@@ -11,6 +11,8 @@ import edu.princeton.cs.algs4.Graph;
 public class BreadFirstPaths {
     private boolean[] marked;
     private int[] edgeTo;
+    private int[] pathslen;
+    private int connectedCount;
     private final int s;
 
     public static void main(String[] args) {
@@ -35,6 +37,12 @@ public class BreadFirstPaths {
     public BreadFirstPaths(Graph G, int s) {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
+        pathslen = new int[G.V()];
+        for (int i = 0; i < G.V(); i++) {
+            pathslen[i] = -1;
+        }
+        pathslen[s] = 0;
+        connectedCount = 0;
         this.s = s;
         bfs(G, s);
     }
@@ -48,7 +56,9 @@ public class BreadFirstPaths {
             for (int w : G.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
+                    connectedCount++;
                     marked[w] = true;
+                    pathslen[w] = connectedCount;
                     queue.enqueue(w);
                 }
             }
@@ -69,5 +79,9 @@ public class BreadFirstPaths {
         }
         path.push(s);
         return path;
+    }
+
+    public int distTo(int v) {
+        return pathslen[v];
     }
 }
