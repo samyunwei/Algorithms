@@ -11,14 +11,12 @@ public class CountTestSymbolGraph {
         String delim = args[1];
         edu.princeton.cs.algs4.SymbolGraph sg = new SymbolGraph(filename, delim);
         Graph G = sg.G();
-        while (StdIn.hasNextLine()) {
-            String source = StdIn.readLine();
-            int count = 0;
-            for (int w : G.adj(sg.index(source))) {
-                StdOut.println("   " + sg.name(w));
-                count++;
-            }
-            StdOut.println(source + ":" + "count:" + count);
+        String source = "Bacon, Kevin";
+        int count = 0;
+        for (int w : G.adj(sg.index(source))) {
+            StdOut.println("   " + sg.name(w));
+            count++;
         }
+        StdOut.println(source + ":" + "count:" + count);
     }
 }
