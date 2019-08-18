@@ -6,7 +6,7 @@ public class Digraph {
     private final int V;
     private int E;
     private Bag<Integer>[] adj;￿￿
-    
+
     public Digraph(int V) {
         this.V = V;
         this.E = 0;
@@ -14,9 +14,7 @@ public class Digraph {
         for (int v = 0; v < V; v++) {
             adj[v] = new Bag<>();
         }
-
     }
-    ￿￿￿￿
 
     public int V() {
         return V;
