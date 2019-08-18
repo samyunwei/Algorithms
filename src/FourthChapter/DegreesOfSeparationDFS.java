@@ -2,10 +2,11 @@ package FourthChapter;
 
 
 import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.DepthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.SymbolGraph;
 
-public class DegreeOfSeparation {
+public class DegreesOfSeparationDFS {
     public static void main(String[] args) {
         SymbolGraph sg = new SymbolGraph(args[0], args[1]);
         Graph G = sg.G();
@@ -16,14 +17,15 @@ public class DegreeOfSeparation {
             return;
         }
         int s = sg.index(source);
-        BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
-
+        DepthFirstPaths dfs = new DepthFirstPaths(G, s);
+        StdOut.println("Source:" + " " + source);
+        StdOut.print("Query:" + " ");
         while (!StdIn.isEmpty()) {
             String sink = StdIn.readLine();
             if (sg.contains(sink)) {
                 int t = sg.index(sink);
-                if (bfs.hasPathTo(t)) {
-                    for (int v : bfs.pathTo(t)) {
+                if (dfs.hasPathTo(t)) {
+                    for (int v : dfs.pathTo(t)) {
                         StdOut.println("  " + sg.name(v));
                     }
                 } else {
@@ -32,6 +34,7 @@ public class DegreeOfSeparation {
             } else {
                 StdOut.println("Not in database");
             }
+            StdOut.print("Query:" + " ");
         }
     }
 }
