@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Bag;
 public class Digraph {
     private final int V;
     private int E;
-    private Bag<Integer>[] adj;￿￿
+    private Bag<Integer>[] adj;
 
     public Digraph(int V) {
         this.V = V;
